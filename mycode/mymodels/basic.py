@@ -245,7 +245,7 @@ class AMMASI(tf.keras.layers.Layer):
         
         if args.use_sinusoidal:
             p_enc_2d = TFPositionalEncoding2D(64)
-            y = tf.zeros((1,100,100,64))
+            y = tf.zeros((1,10000,64))
             image = p_enc_2d(y).numpy()
             image = image.squeeze(0)
             self.grid_emb = image
@@ -312,9 +312,9 @@ class AMMASI(tf.keras.layers.Layer):
         X = self.input_layer(X[:, 2:])
 
         if self.args.use_areaemb:
-            grid_emb = tf.expand_dims(self.grid_emb, 0)
-            grid_emb = tf.squeeze(grid_emb, 0)
-            grid_emb = tf.reshape(grid_emb, (grid_emb.shape[0]*grid_emb.shape[1], -1))
+            # grid_emb = tf.expand_dims(self.grid_emb, 0)
+            # grid_emb = tf.squeeze(grid_emb, 0)
+            # grid_emb = tf.reshape(grid_emb, (grid_emb.shape[0]*grid_emb.shape[1], -1))
             grid_emb = tf.gather(grid_emb, X_idx)
 
 
